@@ -14,7 +14,7 @@ public class Ruiz_Del_Portal_Ivan_Practica1 {
             nrandom = (int) (Math.random() * 2);
             mensaje[i] = nrandom;
         }//for
-        return (mensaje);
+        return mensaje;
     }//MensajeRandom
 
     //Busca la cantidad de bits necesarios para el mensaje
@@ -47,6 +47,45 @@ public class Ruiz_Del_Portal_Ivan_Practica1 {
         return sender;
     }//sendermedio
     
+    //busca que bits de mensaje tiene que comparar con cada bit de redundancia
+    static int[] Senderfinal(int[] mensaje, int bitsnecesarios, int[] senderfinal) {
+        int posibit;
+        int bitssuma;
+        int[] bitstotales = new int[bitsnecesarios];
+        for (posibit = 0; posibit < bitsnecesarios; posibit++) {
+            int bitr = (int) Math.pow(2,posibit);
+                if (posibit == Math.pow(2, posibit)) {
+                    for(int j = 0; j < mensaje.length; j++){
+                        int bittemp = bitr & j;
+                        if(bittemp == bitr){
+                            bitssuma = mensaje[j];
+                        } //if  
+                    } //for
+                    bitssuma = bitstotales[posibit];
+                } //if
+        } //for
+        return senderfinal;
+    } //Senderfinal
+    
+    //calcula en cada bit de redundancia y global si pone 0 o 1
+    static int[] Senderfinal2(int[] mensaje, int bitstotales, int[] senderfinal2){
+        for(int i = 0; i < bitstotales; i++){
+            if (Senderfinal % 2 = 0){
+                mensaje (int) [Math.pow(2,i)] = 0;
+            } //if
+            else (Senderfinal % 2 = 1){
+                mensaje (int) [Math.pow(2,i)] = 1;
+            } //else
+            if (Senderfinal % 2 = 0){
+                mensaje[0] = 0;
+            } //if
+            else (Senderfinal % 2 = 1){
+                mensaje[0] = 1;
+            } //else
+        } //for
+        return senderfinal2;
+    } //Senderfinal2
+    
     //genera 0, 1 o 2 cambios random al sender
     static int[] CambiosRandom(int[] noiser) {
         int nmodificaciones = (int) (Math.random() * 3);
@@ -68,6 +107,7 @@ public class Ruiz_Del_Portal_Ivan_Practica1 {
         int[] mensaje;
         int[] bitsnecesarios;
         int[] sender;
+        int[] senderfinal2;
         int[] noiser;
         
         mensaje = MensajeRandom(10);
@@ -78,6 +118,9 @@ public class Ruiz_Del_Portal_Ivan_Practica1 {
         
         sender = Sendermedio(mensaje);
         System.out.println(Arrays.toString(sender));
+        
+        //senderfinal2 = Senderfinal2(mensaje);
+        //System.out.println(Arrays.toString(senderfinal2);
         
         noiser = CambiosRandom (sender);
         System.out.println(Arrays.toString(noiser));

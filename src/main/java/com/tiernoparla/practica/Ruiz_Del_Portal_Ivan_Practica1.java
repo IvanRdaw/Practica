@@ -47,10 +47,28 @@ public class Ruiz_Del_Portal_Ivan_Practica1 {
         return sender;
     }//sendermedio
     
+    //genera 0, 1 o 2 cambios random al sender
+    static int[] CambiosRandom(int[] noiser) {
+        int nmodificaciones = (int) (Math.random() * 3);
+        int xposiciones;
+        System.out.println("Se han realizado " + nmodificaciones + " modificacion/es");
+        for (int i = 0; i < nmodificaciones; i++) {
+            xposiciones = (int) (Math.random() * noiser.length);
+            if (noiser[xposiciones] == 0) {
+                noiser[xposiciones] = 1;
+            } //if
+            else {
+                noiser[xposiciones] = 0;
+            } //else
+        } //for
+        return (noiser);
+    }//CambiosRandom
+    
     public static void main(String[] args) {
         int[] mensaje;
         int[] bitsnecesarios;
         int[] sender;
+        int[] noiser;
         
         mensaje = MensajeRandom(10);
         System.out.println(Arrays.toString(mensaje));
@@ -60,6 +78,9 @@ public class Ruiz_Del_Portal_Ivan_Practica1 {
         
         sender = Sendermedio(mensaje);
         System.out.println(Arrays.toString(sender));
+        
+        noiser = CambiosRandom (sender);
+        System.out.println(Arrays.toString(noiser));
     } //main
 
 } //Practica1
